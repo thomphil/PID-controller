@@ -13,14 +13,14 @@ class PID {
     }
 
     update(current_pos, set_point) {
-        let error = p5.Vector.sub(set_point, current_pos);
+        // let error = p5.Vector.sub(set_point, current_pos);
 
-        this.P = error;
-        this.I += error;
-        this.D = error - this.last_error;
+        // this.P = error;
+        // this.I += error;
+        // this.D = error - this.last_error;
 
-        this.last_error = error;
+        // this.last_error = error;
 
-        return (p5)
+        // return (p5)
     }
 }

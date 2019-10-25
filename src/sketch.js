@@ -9,12 +9,15 @@ function setup() {
     pid = new PID();
     //HTML area for onscreen information (height, speed...)
     dData = createP();
-    setPoint = createVector(width / 2, height - 20);
+    // setPoint = createVector(width / 2, height - 20);
+
+    drone.applyForce(createVector(0, 2));
 }
 
 function draw() {
     meter(); // must run first
-    drone.applyForce(pid.update(drone.pos, setPoint))
+    // drone.applyForce(pid.update(drone.pos, setPoint))
+    drone.applyForce(createVector(0, 10));
     drone.run();
 
 }

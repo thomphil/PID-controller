@@ -4,7 +4,7 @@ class Vehicle {
         this.vel = createVector(0, 0); //velocity
         this.acc = createVector(0, 0); //acceleration
 
-        this.mas = 20; //object mass
+        this.mas = 200000; //object mass
     }
 
     run() {
