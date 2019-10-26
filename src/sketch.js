@@ -2,22 +2,23 @@ let drone;
 let dData;
 let pid;
 let setPoint;
+let log;
+let logData = [];
 
 function setup() {
-    createCanvas(200, 500);
+    createCanvas(200, 540);
     drone = new Vehicle();
-    pid = new PID();
+    pid = new PID(100, 10, 100000);
     //HTML area for onscreen information (height, speed...)
     dData = createP();
-    // setPoint = createVector(width / 2, height - 20);
-
-    drone.applyForce(createVector(0, 2));
+    log = createP();
+    setPoint = createVector(width / 2, height - 20);
 }
 
 function draw() {
     meter(); // must run first
-    // drone.applyForce(pid.update(drone.pos, setPoint))
-    drone.applyForce(createVector(0, 10));
+    let next = pid.update(drone.pos, setPoint);
+    drone.applyForce(next);
     drone.run();
 
 }
@@ -29,6 +30,14 @@ function meter() {
     //hub
     dData.html("Height: " + (drone.pos.y - 20).toFixed(2) + "</br>" + "Speed: " + drone.vel.y.toFixed(2));
 
+    if (drone.pos.y - 20 != 500) {
+        logData.push(drone.pos.y - 20);
+        output = ""
+        for (const entry of logData) {
+            output = entry + "</br>" + output;
+        }
+        log.html(output)
+    }
     let padding = 20;
     //canvas background
     background(240);

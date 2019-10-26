@@ -4,7 +4,7 @@ class Vehicle {
         this.vel = createVector(0, 0); //velocity
         this.acc = createVector(0, 0); //acceleration
 
-        this.mas = 200000; //object mass
+        this.mas = 100000; //object mass
     }
 
     run() {
@@ -16,7 +16,7 @@ class Vehicle {
         this.vel.add(this.acc);
         this.pos.add(this.vel);
         // clear acceleration
-        this.acc.set(0, 0);
+        this.acc.mult(0);
     }
 
     applyForce(vec) {

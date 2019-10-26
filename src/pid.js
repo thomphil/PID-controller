@@ -4,23 +4,22 @@ class PID {
         this.kI = kI;
         this.kD = kD;
 
-        this.P;
-        this.I;
-        this.D;
-
-        this.last_error;
+        this.prev_error = createVector(0, 0);
+        this.sum_error = createVector(0, 0);
 
     }
 
     update(current_pos, set_point) {
-        // let error = p5.Vector.sub(set_point, current_pos);
+        let error = p5.Vector.sub(set_point, current_pos);
+        this.sum_error.add(error);
+        let deriv = p5.Vector.sub(error, this.prev_error);
 
-        // this.P = error;
-        // this.I += error;
-        // this.D = error - this.last_error;
+        this.prev_error = error;
+        let weighedP = p5.Vector.mult(error, this.kP);
+        let weighedI = p5.Vector.mult(this.sum_error, this.kI);
+        let weighedD = p5.Vector.mult(deriv, this.kD)
 
-        // this.last_error = error;
-
-        // return (p5)
+        let output = weighedP.add(weighedI.add(weighedD));
+        return output;
     }
 }
