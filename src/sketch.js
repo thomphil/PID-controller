@@ -8,7 +8,7 @@ let logData = [];
 function setup() {
     createCanvas(200, 540);
     drone = new Vehicle();
-    pid = new PID(100, 10, 100000);
+    pid = new PID(0.001, 0.01, 0.001);
     //HTML area for onscreen information (height, speed...)
     dData = createP();
     log = createP();
